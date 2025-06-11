@@ -1,0 +1,48 @@
+---
+title: "Create Page Audience"
+api: "POST /meta/create_page_audience"
+description: "This endpoint allows you to create a custom audience based on user interactions with a specific Facebook Page. It enables advertisers to target people who have engaged with the page through actions such as likes, comments, shares, or visits."
+---
+
+## Request Body
+
+<ParamField body="userId" type="string" required>
+	User ID, If not already created, make a user on [create user
+	page](/api-reference/endpoint/auth/create_user) first. If already created,
+	retrieve the user ID from [get profile
+	page](/api-reference/endpoint/auth/get_profile).
+</ParamField>
+<ParamField body="name" type="string" required>
+	Page Audience Name
+</ParamField>
+<ParamField body="type" type="string">
+	Type = `FACEBOOK` or `INSTAGRAM`
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+	Indicates that the HTTP response was successful (status code 200 OK).
+</ResponseField>
+
+<ResponseField name="results" type="object" >
+    <Expandable title="Results Object">
+        <ResponseField name="success" type="boolean" >
+			Indicates whether the specific operation or API action was successful.
+        </ResponseField>
+        <ResponseField name="audience" type="object" >
+            <Expandable title="Audience Object">
+                <ResponseField name="id" type="string" >
+                    Unique identifier for page audience.
+                </ResponseField>
+                <ResponseField name="name" type="string" >
+                    Name of audience
+                </ResponseField>
+            </Expandable>
+        </ResponseField>
+        <ResponseField name="error" type="string">
+            Error string if something went wrong
+        </ResponseField>
+    </Expandable>
+
+</ResponseField>

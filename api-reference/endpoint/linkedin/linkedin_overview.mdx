@@ -1,0 +1,39 @@
+---
+title: "Linkedin Audience Overview"
+---
+
+The LinkedIn Ads Audience API allows you to create custom audiences by uploading user data in CSV format. This enables you to build highly targeted campaigns by matching LinkedIn users based on uploaded identifiers.
+
+This section provides the endpoint for creating LinkedIn audiences from a CSV file. Detailed request and response formats, authentication requirements, and example payloads are available within the respective route documentation.
+
+Use the following endpoints to interact with various audience sources:
+
+# LinkedIn Ads Audience API
+
+Use the card below to explore the endpoint:
+
+<Card
+	title="📥 Create LinkedIn Audience from CSV"
+	href="/api-reference/endpoint/linkedin/create_csv_audience"
+>
+	Upload a CSV file to create a custom audience for LinkedIn Ads targeting.
+</Card>
+
+<Card
+	title="🔗 Link CSV Audience"
+	href="/api-reference/endpoint/linkedin/link_csv_audience"
+>
+	Link a CSV file to an existing audience.
+</Card>
+
+<Card
+	title="📃 Get LinkedIn Audience List"
+	href="/api-reference/endpoint/linkedin/get_audiences_list"
+>
+	Get a list of all LinkedIn audiences.
+</Card>
+
+# How to create a LinkedIn audience from a CSV file
+
+1. Create a LinkedIn audience from the CSV file using the [Create LinkedIn Audience from CSV](/api-reference/endpoint/linkedin/create_csv_audience) endpoint. This endpoint will return a csvFileId which will be used in the next step.
+2. Link the CSV file using the [Link CSV Audience](/api-reference/endpoint/linkedin/link_csv_audience) endpoint using the csvFileId from the previous step. This endpoint will return a audienceId.

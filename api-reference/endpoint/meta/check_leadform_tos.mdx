@@ -1,0 +1,38 @@
+---
+title: "Check LeadForm TOS"
+api: "POST /meta/check_leadform_tos"
+description: "This endpoint checks whether the user has accepted the Terms of Service for their connected facebook page. It is used to verify compliance before allowing actions such as advertising or lead form creation."
+---
+
+## Request Body
+
+<ParamField body="userId" type="string" required>
+	User ID, If not already created, make a user on [create user
+	page](/api-reference/endpoint/auth/create_user) first. If already created,
+	retrieve the user ID from [get profile
+	page](/api-reference/endpoint/auth/get_profile).
+</ParamField>
+{/* <ParamField body="fbPageId" type="string" required>
+	Facebook Page Id
+</ParamField> */}
+
+## Response
+
+<ResponseField name="success" type="boolean">
+	Indicates that the HTTP response was successful (status code 200 OK).
+</ResponseField>
+
+<ResponseField name="results" type="object">
+	<Expandable title="Results">
+		<ResponseField name="success" type="boolean">
+			Indicates whether the specific operation or API action was
+			successful.
+		</ResponseField>
+		<ResponseField name="hasAgreeToTos" type="boolean">
+			Confirms if user agreed to terms of services
+		</ResponseField>
+		<ResponseField name="error" type="string">
+			Error string if something went wrong
+		</ResponseField>
+	</Expandable>
+</ResponseField>

@@ -1,0 +1,74 @@
+---
+title: "Search Targeting Interests"
+api: "POST /meta/search_targeting_interests"
+description: "This endpoint allows you to search for advertising target interests based on specific criteria. It helps in identifying relevant interest groups to improve the accuracy and effectiveness of ad targeting."
+---
+
+## Request Body
+
+<ParamField body="userId" type="string" required>
+	User ID, If not already created, make a user on [create user
+	page](/api-reference/endpoint/auth/create_user) first. If already created,
+	retrieve the user ID from [get profile
+	page](/api-reference/endpoint/auth/get_profile).
+</ParamField>
+<ParamField body="query" type="string" required>
+	Search Query, for example: `Marketing`
+</ParamField>
+<ParamField body="specialAdCategories" type="string[]" default={[]}>
+	Supported Values = `HOUSING`, `FINANCIAL_PRODUCTS_SERVICES`, `EMPLOYMENT`
+</ParamField>
+<ParamField body="specialAdCountries" type="string[]" default={[]}>
+	ISO 3166-1 alpha-2 country codes e.g: `US`,`UK`
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+	Indicates that the HTTP response was successful (status code 200 OK).
+</ResponseField>
+
+<ResponseField name="results" type="object">
+	<Expandable title="Media Results">
+		<ResponseField name="success" type="boolean">
+			Indicates whether the specific operation or API action was successful.
+    	</ResponseField>
+
+    	<ResponseField name="interests" type="object[]">
+            <Expandable title="Interest Items">
+                <ResponseField name="id" type="string">
+                    Unique interest identifier
+                </ResponseField>
+
+                <ResponseField name="name" type="string">
+                    Display name of the interest
+                </ResponseField>
+
+                <ResponseField name="type" type="string" >
+                    Classification type of the interest: `behaviors`, `demographics`, `interests`
+                </ResponseField>
+
+                <ResponseField name="path" type="string[]">
+                    Array of paths
+                </ResponseField>
+
+                <ResponseField name="audience_size_lower_bound" type="number">
+                    Minimum estimated audience size
+                </ResponseField>
+
+                <ResponseField name="audience_size_upper_bound" type="number">
+                    Maximum estimated audience size
+                </ResponseField>
+
+                <ResponseField name="description" type="string">
+                    Detailed explanation of the interest category
+                </ResponseField>
+            </Expandable>
+    </ResponseField>
+
+    <ResponseField name="error" type="string">
+        Error string if something went wrong
+    </ResponseField>
+    </Expandable>
+
+</ResponseField>

@@ -1,0 +1,101 @@
+---
+title: "Get Instagram Page Media"
+api: "POST /meta/get_ig_page_media"
+description: "This endpoint is used to fetch media assets (both images and videos) associated with a user's Instagram Page. It provides access to the creative library that can be used in ad campaigns, allowing users to browse and select previously uploaded media for their advertisements."
+---
+
+## Request Body
+
+<ParamField body="userId" type="string" required>
+	User ID, If not already created, make a user on [create user
+	page](/api-reference/endpoint/auth/create_user) first. If already created,
+	retrieve the user ID from [get profile
+	page](/api-reference/endpoint/auth/get_profile).
+</ParamField>
+{/* <ParamField body="instagramId" type="string" required>
+	Instagram Page ID
+</ParamField> */}
+<ParamField body="pagination" type="string" default="">
+	If the number of results exceeds the page limit, the response will include
+	pagination links (`next` and `previous`) to help you navigate through the
+	result set
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+	Indicates that the HTTP response was successful (status code 200 OK).
+</ResponseField>
+
+<ResponseField name="results" type="object" >
+	<Expandable title="Media Results">
+		<ResponseField name="success" type="boolean" >
+			Indicates whether the specific operation or API action was successful.
+		</ResponseField>
+
+    	<ResponseField name="media" type="object[]" >
+    		<Expandable title="Media Items">
+    				<ResponseField name="id" type="string" >
+    					Unique Instagram media ID
+    				</ResponseField>
+
+    				<ResponseField name="caption" type="string">
+    					Post caption text
+
+    				</ResponseField>
+
+    				<ResponseField
+    					name="media_type"
+    					type="string"
+    				>
+    					Type of media content : `IMAGE` or `VIDEO` or `CAROUSEL_ALBUM`
+    				</ResponseField>
+
+    				<ResponseField name="media_url" type="string" >
+    					Direct URL to the media file
+    				</ResponseField>
+
+    				<ResponseField name="permalink" type="string" >
+    					Permanent link to the Instagram post
+
+    				</ResponseField>
+
+    				<ResponseField
+    					name="timestamp"
+    					type="string"
+    					format="ISO 8601"
+
+    				>
+    					When the media was published
+    				</ResponseField>
+
+    				<ResponseField name="ig_id" type="string" >
+    					Instagram's internal ID for the media
+    				</ResponseField>
+
+    				<ResponseField name="boost_eligibility_info" type="object">
+    					<Expandable title="Boost Eligibility">
+    						<ResponseField
+    							name="eligible_to_boost"
+    							type="boolean"
+
+    						>
+    							Whether the post can be boosted as an ad
+    						</ResponseField>
+    					</Expandable>
+    				</ResponseField>
+
+    				<ResponseField
+    					name="media_product_type"
+    					type="string"
+    				>
+    					Placement type of the media : `FEED` or `STORY` or `REELS`
+    				</ResponseField>
+    		</Expandable>
+    	</ResponseField>
+    	 <ResponseField name="error" type="string">
+                Error string if something went wrong
+    	</ResponseField>
+    </Expandable>
+
+</ResponseField>
