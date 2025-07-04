@@ -13,12 +13,12 @@ description: "This endpoint is used to create a search campaign."
 	page](/api-reference/endpoint/auth/get_profile).
 </ParamField>
 
-<ParamField body="goal" type="string" required>
+<ParamField body="campaignName" type="string" required>
 	Name of the campaign
 </ParamField>
 
-<ParamField body="amount" type="string" required>
-	Amount of the campaign
+<ParamField body="dailyBudget" type="string" required>
+	Daily budget of the campaign
 </ParamField>
 
 <ParamField body="userListId" type="string | string[]">
@@ -33,8 +33,8 @@ description: "This endpoint is used to create a search campaign."
 	End Date Format: `YYYY-MM-DD`
 </ParamField>
 
-<ParamField body="keywords" type="array" required>
-	Keywords for the campaign. Can be an array of strings or objects with text and match_type properties.
+ <ParamField body="keywords" type="object[]" required>
+	Keywords for the campaign. You can either type your own keywords or use our [generate keyword ideas API](/api-reference/endpoint/google/generate_keyword_ideas) to get keyword suggestions.
 	
 	<Expandable title="Keyword Object">
 		<ParamField body="text" type="string" required>
@@ -43,34 +43,40 @@ description: "This endpoint is used to create a search campaign."
 		
 		<ParamField body="match_type" type="string" required>
 			The match type for the keyword
+
+			Valid `match_type` values: `EXACT`, `PHRASE`, `BROAD`
+ 
 		</ParamField>
 	</Expandable>
-</ParamField>
+</ParamField> 
 
-<ParamField body="negativeKeywords" type="array">
-	Negative keywords for the campaign. Keywords that should not trigger the ad.
+
+
+<ParamField body="negativeKeywords" type="object[]">
+	Negative keywords for the campaign. You can either type your own keywords or use our [generate keyword ideas API](/api-reference/endpoint/google/generate_keyword_ideas) to get keyword suggestions.
 	
-	<Expandable title="Negative Keywords Array">
-		<ParamField body="text" type="string">
-			The negative keyword text
+	<Expandable title="Negative Keyword Object">
+		<ParamField body="text" type="string" required>
+			The keyword text
+		</ParamField>
+		
+		<ParamField body="match_type" type="string" required>
+			The match type for the keyword
+
+			Valid `match_type` values: `EXACT`, `PHRASE`, `BROAD`
+ 
 		</ParamField>
 	</Expandable>
 </ParamField>
 
-<ParamField body="locations" type="array">
-	Target locations for the campaign. Array of location strings.
-	
-	<Expandable title="Locations Array">
-		<ParamField body="location" type="string">
-			Location string (e.g., city name, country, etc.)
-		</ParamField>
-	</Expandable>
+<ParamField body="locations" type="string[]">
+	Target locations for the campaign. Array of location IDs. First, use the [get_location_v2 API](/api-reference/endpoint/google/get_location_v2) to search for location names (e.g., "Birmingham, London") and get their corresponding `locationId`. Then pass those `locationId` in this array.
 </ParamField>
 
-<ParamField body="proximityTargeting" type="array">
+<ParamField body="proximityTargeting" type="object[]">
 	Proximity targeting for the campaign. Array of proximity targeting objects.
 	
-	<Expandable title="Proximity Targeting Array">
+	<Expandable title="Proximity Targeting Object">
 		<ParamField body="radius_units" type="string" required>
 			Units for the radius (e.g., "MILES", "KILOMETERS")
 		</ParamField>
@@ -89,52 +95,30 @@ description: "This endpoint is used to create a search campaign."
 	</Expandable>
 </ParamField>
 
-<ParamField body="negativeLocations" type="array">
-	Negative locations for the campaign. Locations that should be excluded from targeting.
-	
-	<Expandable title="Negative Locations Array">
-		<ParamField body="location" type="string">
-			Location string to exclude from targeting (e.g., city name, country, etc.)
+		<ParamField body="negativeLocations" type="string[]">
+			Negative locations for the campaign. Locations that should be excluded from targeting. Array of location IDs. First, use the [get_location_v2 API](/api-reference/endpoint/google/get_location_v2) to search for location names (e.g., "Birmingham, London") and get their corresponding `locationId`. Then pass those `locationId` in this array.
 		</ParamField>
-	</Expandable>
+
+<ParamField body="languages" type="string[]">
+	Languages for the campaign. Array of language code strings.
+	
+		Language code string (e.g., "en", "es", "fr", etc.)
 </ParamField>
 
-<ParamField body="languages" type="array">
-	Languages for the campaign. Array of language strings.
-	
-	<Expandable title="Languages Array">
-		<ParamField body="language" type="string">
-			Language string (e.g., "en", "es", "fr", etc.)
-		</ParamField>
-	</Expandable>
-</ParamField>
-
-<ParamField body="ads" type="array">
+<ParamField body="ads" type="object[]">
 	Ads array for the campaign. Array of ad objects containing creative elements.
 	
-	<Expandable title="Ads Array">
+	<Expandable title="Ads Object">
 		<ParamField body="url" type="string" required>
 			Destination URL for the ad
 		</ParamField>
 		
-		<ParamField body="headlines" type="array" required>
+		<ParamField body="headlines" type="string[]" required>
 			Array of headline strings for the ad
-			
-			<Expandable title="Headlines Array">
-				<ParamField body="headline" type="string">
-					Headline text for the ad
-				</ParamField>
-			</Expandable>
 		</ParamField>
 		
-		<ParamField body="descriptions" type="array" required>
-			Array of description strings for the ad
-			
-			<Expandable title="Descriptions Array">
-				<ParamField body="description" type="string">
-					Description text for the ad
-				</ParamField>
-			</Expandable>
+		<ParamField body="descriptions" type="string[]" required>
+		  	Array of description strings for the ad 
 		</ParamField>
 		
 		<ParamField body="headlineIndexToPinFirstSlot" type="number">
@@ -147,24 +131,12 @@ description: "This endpoint is used to create a search campaign."
 	</Expandable>
 </ParamField>
 
-<ParamField body="conversionCategory" type="array">
-	Conversion categories for the campaign. Array of conversion category strings.
-	
-	<Expandable title="Conversion Category Array">
-		<ParamField body="category" type="string">
-			Conversion category string (e.g., "PURCHASE", "SIGN_UP", "LEAD", etc.)
-		</ParamField>
-	</Expandable>
+<ParamField body="conversionCategory" type="string[]">
+	Conversion categories for the campaign. Array of conversion category strings. First, use the [get_conversion_action API](/api-reference/endpoint/google/get_conversion_action) to retrieve available conversion categories, then pass the desired category strings in this array.
 </ParamField>
 
-<ParamField body="callouts" type="array">
-	Callouts array for the campaign. Array of callout strings.
-	
-	<Expandable title="Callouts Array">
-		<ParamField body="callout" type="string">
-			Callout text string (e.g., "Free shipping", "24/7 support", etc.)
-		</ParamField>
-	</Expandable>
+<ParamField body="callouts" type="string[]">
+		Callouts are Keywords for the campaign. You can either type your own keywords or use our [generate keyword ideas API](/api-reference/endpoint/google/generate_keyword_ideas) to get keyword suggestions.
 </ParamField>
 
 <ParamField body="phoneNumber" type="string">
@@ -176,13 +148,13 @@ description: "This endpoint is used to create a search campaign."
 </ParamField>
 
 <ParamField body="leadFormAssetId" type="string">
-	Lead form asset ID for the campaign (optional)
+	Lead form asset ID for the campaign (optional). First, use the [get_lead_forms API](/api-reference/endpoint/google/get_lead_forms) to retrieve available lead form asset IDs, then pass the desired asset ID in this field.
 </ParamField>
 
-<ParamField body="siteLink" type="array">
+<ParamField body="siteLink" type="object[]">
 	Site links array for the campaign. Array of site link objects. Minimum 2 items required.
 	
-	<Expandable title="Site Link Array">
+	<Expandable title="Site Link Object">
 		<ParamField body="sitelinkText" type="string" required>
 			Text for the site link
 		</ParamField>
@@ -201,14 +173,8 @@ description: "This endpoint is used to create a search campaign."
 	</Expandable>
 </ParamField>
 
-<ParamField body="images" type="array">
-	Images array for the campaign. Array of image URLs.
-	
-	<Expandable title="Images Array">
-		<ParamField body="image" type="string">
-			Image URL string
-		</ParamField>
-	</Expandable>
+<ParamField body="images" type="string[]">
+	 Images for the campaign. Array of image URLs.
 </ParamField>
 
 <ParamField body="tracking_url_template" type="string">
@@ -226,26 +192,6 @@ description: "This endpoint is used to create a search campaign."
 </ParamField>
 
 
-## Response
-
-<ResponseField name="success" type="boolean">
-	Indicates that the HTTP response was successful (status code 200 OK).
-</ResponseField>
-
-
-<ResponseField name="results" type="object">
-  <Expandable title="Results Object">
-        <ResponseField name="success" type="boolean">
-			Indicates whether the specific operation or API action was successful.
-        </ResponseField>
- 
-
-
-      <ResponseField name="error" type="string">
-    		Error string if something went wrong
-    	</ResponseField>
-  </Expandable>
-</ResponseField>
 
 
 ## Response
