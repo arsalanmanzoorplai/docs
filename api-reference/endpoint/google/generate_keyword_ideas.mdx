@@ -6,15 +6,15 @@ description: "This endpoint is used to generate keyword ideas."
 
 ## Request Body
 
-<ParamField body="seedKeyword" type="string" required>
-	Seed keyword for generating keyword ideas
+<ParamField body="keyword" type="string" required>
+	Keyword for generating similar keyword ideas.
 </ParamField>
 
-<ParamField body="languageId" type="number" required>
+<ParamField body="languageId" type="number">
 	Language ID for generating keyword ideas
 </ParamField>
 
-<ParamField body="locationIds" type="string[]" required>
+<ParamField body="locationIds" type="string[]">
 	Location IDs for generating keyword ideas
 </ParamField>
 
