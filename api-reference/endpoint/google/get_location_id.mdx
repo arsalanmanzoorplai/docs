@@ -1,7 +1,7 @@
 ---
-title: "Get Location V2"
-api: "POST /gads/get_location_v2"
-description: "This endpoint is used to get a location v2."
+title: "Get Location Id"
+api: "POST /gads/get_location_id"
+description: "This endpoint retrieves the locationId and related details for a given location name. It helps users search for geographic locations (e.g., cities or regions) and fetch the corresponding identifiers required for targeting in Google Ads and Bing Ads campaigns."
 ---
 
 ## Request Body
@@ -28,12 +28,7 @@ description: "This endpoint is used to get a location v2."
       <ResponseField name="locationId" type="string">
            Location ID
       </ResponseField>
-      <ResponseField name="bingAdsLocationId" type="string">
-           Bing Ads Location ID
-      </ResponseField>
-      <ResponseField name="status" type="string">
-           Status of the location
-      </ResponseField>
+   
 
       <ResponseField name="error" type="string">
     		Error string if something went wrong
