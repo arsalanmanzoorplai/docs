@@ -1,13 +1,15 @@
 ---
 title: "Get Location Id"
 api: "POST /gads/get_location_id"
-description: "This endpoint retrieves the locationId and related details for a given location name. It helps users search for geographic locations (e.g., cities or regions) and fetch the corresponding identifiers required for targeting in Google Ads and Bing Ads campaigns."
+description: "This endpoint retrieves the locationId and related details for a given location name. It helps users search for geographic locations (e.g., cities or regions) and fetch the corresponding identifiers required for targeting in Google Ads campaigns."
 ---
 
 ## Request Body
 
 <ParamField body="location" type="string" required>
-	Location name
+	Name of the location to search for its corresponding `locationId`.   
+  
+  Example: `"Grand Canyon, Arizona"`
 </ParamField>
 
  
@@ -26,7 +28,11 @@ description: "This endpoint retrieves the locationId and related details for a g
         </ResponseField>
 
       <ResponseField name="locationId" type="string">
-           Location ID
+           A `locationId` is a unique identifier assigned by Google Ads to represent a specific geographic location (such as a city, state, country, or region).
+
+            This ID is used in campaign targeting to define where your ads should appear.  
+            
+            Example: `"21167"` represents New York, USA.
       </ResponseField>
    
 

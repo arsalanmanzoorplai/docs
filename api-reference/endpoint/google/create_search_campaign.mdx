@@ -214,18 +214,28 @@ Example: "US", "PK", "BE"
 A lead form is a Google Ads asset used to collect user information directly within the ad.
 To get the lead form asset ID reference [get lead forms API](/api-reference/endpoint/google/get_lead_forms) or [create lead form API](/api-reference/endpoint/google/create_lead_form).
 
-
 </ParamField>
 
 
 
 <ParamField body="images" type="string[]">
-Image Asset for the campaign. Array of image URLs.
+Image assets for the campaign. Provide an array of image URLs. Make sure the connected Google Ads account is eligible to use image assets by using our [Image Asset Eligibility API](/api-reference/endpoint/google/check_image_asset_eligibility).
 </ParamField>
+
 
 <ParamField body="tracking_url_template" type="string">
 UTM parameters for the campaign
 </ParamField>
+
+<ParamField body="locationGroupId" type="string">
+Unique identifier of the location group to associate with this campaign.  
+
+This ID allows your ads to appear on Google Maps and in location-based search results by linking your campaign to a group of business locations.  
+
+You can obtain the `locationGroupId` by calling the [Create Location Group API](/api-reference/endpoint/gads/create_location_group).
+</ParamField>
+
+
 
 
 

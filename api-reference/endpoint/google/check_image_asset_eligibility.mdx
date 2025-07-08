@@ -1,7 +1,7 @@
 ---
-title: "Account Status"
+title: "Check Image Asset Eligibility"
 api: "POST /gads/account_status"
-description: "This endpoint checks the current status of a Google Ads customer account. It returns specific eligibility information, such as whether the account is allowed to use image assets in search ads. Use this to verify account capabilities before proceeding with campaign setup."
+description: "This endpoint checks whether a Google Ads account is eligible to use image assets in search ads. Use this to verify account capabilities before proceeding with campaign setup."
 ---
 
 ## Request Body
@@ -28,7 +28,9 @@ description: "This endpoint checks the current status of a Google Ads customer a
         </ResponseField>
 
       <ResponseField name="isEligibleForSearchAdImageAsset" type="boolean">
-           Is eligible for search ad image asset
+          Specifies whether the Google Ads account is eligible to use image assets in search ads.
+
+          Returns `true` if the account supports image extensions for Search campaigns.
       </ResponseField>
 
 

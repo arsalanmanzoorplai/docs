@@ -11,11 +11,20 @@ description: "This endpoint generates keyword ideas related to a given input key
 </ParamField>
 
 <ParamField body="languageId" type="number">
-	Language ID for generating keyword ideas
+Language ID for generating keyword ideas.  
+
+You can find supported `languageIds` in the  
+[Google Ads Language Codes Table](https://developers.google.com/static/google-ads/api/data/tables/languagecodes.csv).
+
+Default languageId is **English**.  
 </ParamField>
 
 <ParamField body="locationIds" type="string[]">
 	Location IDs for generating keyword ideas
+
+    You can retrieve the appropriate `locationId` using the [Get Location API](/api-reference/endpoint/gads/get_location_v2).
+
+    Default `locationId` is **United States**.
 </ParamField>
 
 ## Response
@@ -33,32 +42,23 @@ description: "This endpoint generates keyword ideas related to a given input key
        	<ResponseField name="keywords" type="object[]">
             <Expandable title="Keyword Object">
                 <ResponseField name="keyword" type="string">
-                    Keyword name
+                    The generated keyword idea related to the input keyword.  
+                 
+                     Example: `"best running shoes"`
                 </ResponseField>
 
                 <ResponseField name="searchVolume" type="number">
-                    Search volume for the keyword
+                    Average monthly search volume for the keyword.  
+                    
+                    Example: `19000`
                 </ResponseField>
 
-                  	<ResponseField name="monthlySearchVolumeHolders" type="object[]">
-            <Expandable title="Monthly Search Volume Holder Object">
-                <ResponseField name="year" type="string">
-                    Year of the search volume
-                </ResponseField>
-
-                <ResponseField name="month" type="number">
-                    Month of the search volume
-                </ResponseField>
-
-                <ResponseField name="montlySearches" type="number">
-                    Monthly searches for the keyword
-                </ResponseField>
- 
-            </Expandable>
-        </ResponseField>
+             
 
          <ResponseField name="cpc" type="number">
-                    CPC for the keyword
+              Estimated cost-per-click value for the keyword. 
+               
+               This is a numerical score used to help rank keyword performance.
                 </ResponseField>
 
                

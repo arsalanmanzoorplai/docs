@@ -1,7 +1,7 @@
 ---
 title: "Get Conversion Event"
 api: "POST /gads/get_conversion_event"
-description: "This endpoint retrieves the available conversion event categories linked to a Google Ads account. Use it to fetch and display valid options when setting up a campaign with a conversion-based objective."
+description: "This endpoint retrieves the available conversion events linked to a Google Ads account. Use it to fetch and display valid options when setting up a campaign with a conversion-based objective."
 ---
 
 ## Request Body
@@ -27,8 +27,8 @@ description: "This endpoint retrieves the available conversion event categories 
 			Indicates whether the specific operation or API action was successful.
         </ResponseField>
 
-      <ResponseField name="categories" type="string[]">
-           Categories of conversion actions
+      <ResponseField name="events" type="string[]">
+           Events of the conversion actions
       </ResponseField>
 
       <ResponseField name="error" type="string">
