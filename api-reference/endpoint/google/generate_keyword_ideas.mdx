@@ -10,13 +10,25 @@ description: "This endpoint generates keyword ideas related to a given input key
 	Keyword for generating similar keyword ideas.
 </ParamField>
 
-<ParamField body="languageId" type="number">
+{/* <ParamField body="languageId" type="number">
 Language ID for generating keyword ideas.  
 
 You can find supported `languageIds` in the  
 [Google Ads Language Codes Table](https://developers.google.com/static/google-ads/api/data/tables/languagecodes.csv).
 
 Default languageId is **English**.  
+</ParamField> */}
+
+<ParamField body="languageId" type="string[]">
+`languageId` for generating keyword ideas. 
+  <Card
+        title="You can find supported `languageIds` by download the file from the link"
+    	horizontal
+        icon="download"
+        href="https://content.linkedin.com/content/dam/help/en-us/lms/LinkedIn_Ads_Contact_Match_Template.csv"
+    />
+
+Default languageId is **English**. 
 </ParamField>
 
 <ParamField body="locationIds" type="string[]">
@@ -26,6 +38,8 @@ Default languageId is **English**.
 
     Default `locationId` is **United States**.
 </ParamField>
+
+
 
 ## Response
 
