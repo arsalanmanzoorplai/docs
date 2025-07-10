@@ -129,10 +129,14 @@ Proximity targeting is required if `locations` is not provided.
 `negative_locations` is an array of `location IDs` that you want to exclude from the campaign targeting. To get the `locationId` reference [get location API](/api-reference/endpoint/google/get_location_id).
 </ParamField>
 
-<ParamField body="geo_target_type" type="string" default="PRESENCE">
+<ParamField body="geo_target_type" type="string">
 Targeting type for the campaign
 
 Valid values: `PRESENCE`, `PRESENCE_OR_INTEREST`
+
+<Note>
+Default `geo_target_type` is `PRESENCE`.
+</Note>
 </ParamField>
 
 
