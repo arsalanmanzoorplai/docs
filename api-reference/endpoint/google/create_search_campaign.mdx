@@ -31,6 +31,13 @@ Name of the campaign
 
 <ParamField body="dailyBudget" type="string" required>
 Daily budget of the campaign
+
+<ParamField body="dailyBudget" type="string" required>
+Daily budget of the campaign.
+
+<Note> The currency used for the `dailyBudget` is the same as the one set during the ad account creation.</Note>
+</ParamField>
+
 </ParamField>
 
 
@@ -227,7 +234,7 @@ Image assets for the campaign. Provide an array of image URLs. Make sure the con
 </ParamField>
 
 
-<ParamField body="tracking_url_template" type="string">
+<ParamField body="utmParams" type="string">
 UTM parameters for the campaign
 </ParamField>
 
